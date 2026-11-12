@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jajanan Kecil – Jajanan Khas Indonesia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#14213d; --muted:#556079; --soft:#eef1f8; --line:#dde2ee;
+  --accent:#fca311; --on-accent:#14213d; --band:#14213d; --on-band:#ffffff; --danger:#b3321f;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0f1730;--ink:#f2f4fb;--muted:#a3adc6;--soft:#18224a;--line:#2a3560;--band:#18224a;--danger:#ff8a75;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0f1730;--ink:#f2f4fb;--muted:#a3adc6;--soft:#18224a;--line:#2a3560;--band:#18224a;--danger:#ff8a75;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6}
+h1,h2,h3{margin:0;line-height:1.08;font-weight:800;letter-spacing:-.02em}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:11}
+.nav{display:flex;align-items:center;gap:24px;height:68px}
+.logo{font-weight:800;font-size:1.35rem;text-decoration:none;margin-right:auto}
+.nav a.l{text-decoration:none;font-weight:600;color:var(--muted)}
+.nav a.l:hover{color:var(--ink)}
+.cartbtn{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:10px 18px;font-weight:600}
+.cartbtn b{background:var(--accent);color:var(--on-accent);border-radius:8px;padding:1px 8px;margin-left:8px}
+@media (max-width:640px){.nav a.l{display:none}}
+
+.hero{display:flex;align-items:center;gap:48px;padding:64px 0 56px}
+.hero .t{flex:1 1 50%}
+.hero h1{font-size:clamp(2.6rem,7vw,4.8rem)}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;transform:translateY(105%);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.12s}.hero h1 span:nth-child(3) i{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero p{margin:22px 0 28px;max-width:26em;color:var(--muted);font-size:1.12rem}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;border-radius:12px;padding:14px 24px;font-weight:600;text-decoration:none;border:2px solid var(--ink);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.hero .ph{flex:1 1 44%;aspect-ratio:4/5}
+.facts{background:var(--band);color:var(--on-band)}
+.facts .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px;font-weight:600}
+
+.photo{position:relative;border-radius:22px;overflow:hidden;background:var(--soft)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo[data-k="m7"] img{object-position:center 68%;transform:scale(1.16)}
+.photo.empty{display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;border:2px dashed var(--line)}
+.up{position:absolute;right:12px;bottom:12px;background:var(--accent);color:var(--on-accent);font-size:.9rem;font-weight:600;padding:8px 14px;border-radius:10px;cursor:pointer}
+.sbar{background:var(--accent);color:var(--on-accent);text-align:center;font-weight:600;padding:8px 16px}
+.sbar:empty{display:none}
+
+section.sec{padding:72px 0 24px}
+.sec>.wrap>h2{font-size:clamp(2rem,5vw,3rem)}
+.sec>.wrap>p.sub{color:var(--muted);margin:10px 0 28px;max-width:34em}
+.item{display:flex;align-items:center;gap:48px;padding:36px 0;border-top:1px solid var(--line)}
+.item:nth-child(even){flex-direction:row-reverse}
+.item .photo{flex:0 0 46%;aspect-ratio:4/3}
+.item .body{flex:1}
+.item h3{font-size:clamp(1.7rem,4vw,2.4rem)}
+.item p{color:var(--muted);margin:10px 0 18px;max-width:28em}
+.pr{font-weight:800;font-size:1.5rem}
+.pr small{font-weight:400;color:var(--muted);font-size:.95rem;margin-left:6px}
+.buy{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.add{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:12px 24px;font-weight:600;transition:transform .2s}
+.add:hover{transform:translateY(-3px)}
+.step{display:inline-flex;align-items:center;border:2px solid var(--ink);border-radius:12px}
+.step button{width:42px;height:40px;border:0;background:transparent;font-size:1.3rem;font-weight:800}
+.step span{min-width:32px;text-align:center;font-weight:800}
+@media (max-width:760px){
+  .hero,.item,.item:nth-child(even){flex-direction:column;align-items:stretch;gap:24px}
+  .hero{padding-top:36px}.item .photo,.hero .ph{flex:none;width:100%}
+}
+
+.steps{list-style:none;margin:0;padding:0;max-width:640px}
+.steps li{display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.steps b{flex:none;width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.steps h3{font-size:1.25rem;margin-bottom:4px}
+.steps p{margin:0;color:var(--muted)}
+
+.contact{background:var(--band);color:var(--on-band);margin-top:72px;padding:64px 0}
+.contact h2{font-size:clamp(2rem,5vw,3rem)}
+.contact p{max-width:30em;opacity:.85;margin:14px 0 26px}
+.contact .btn{border-color:var(--accent)}
+footer{padding:22px 0;color:var(--muted);font-size:.9rem}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.overlay{position:fixed;inset:0;z-index:30;background:rgba(10,15,35,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--bg);color:var(--ink);padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.overlay.open .drawer{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center}
+.dh h2{font-size:1.8rem}
+.close{border:0;background:transparent;font-size:2rem;line-height:1;padding:4px 8px}
+.ci{padding:12px 0;border-bottom:1px solid var(--line)}
+.cr{display:flex;justify-content:space-between;gap:10px;font-weight:600}
+.cf{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.rm{border:0;background:transparent;color:var(--danger);font-weight:600}
+.empty{color:var(--muted);padding:22px 0}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.2rem;padding:16px 0 4px}
+label{display:block;font-weight:600;margin:14px 0 5px;font-size:.95rem}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+textarea{min-height:76px;resize:vertical}
+.wa{margin-top:16px;width:100%;border:0;border-radius:12px;background:#1f9d55;color:#fff;font-weight:800;font-size:1.05rem;padding:15px}
+.wa:disabled{opacity:.45;cursor:not-allowed}
+.err{color:var(--danger);font-size:.9rem;margin-top:8px;min-height:1.2em}
+
+#bar{position:fixed;left:0;top:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),#e63946);z-index:40;transition:width .1s}
+nav{transition:box-shadow .3s}nav.sc{box-shadow:0 8px 24px rgba(20,33,61,.12)}
+.hero .ph{animation:float 6s ease-in-out infinite}
+.hero .ph .photo{box-shadow:0 30px 60px -20px rgba(20,33,61,.45);transform:rotate(2deg);transition:transform .5s}
+.hero .ph .photo:hover{transform:rotate(0) scale(1.03)}
+@keyframes float{50%{transform:translateY(-14px)}}
+.hero h1 span i{background:linear-gradient(90deg,var(--ink) 60%,var(--accent));-webkit-background-clip:text;background-clip:text}
+.facts .wrap span{position:relative;padding-left:16px}
+.facts .wrap span::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(252,163,17,.7)}100%{box-shadow:0 0 0 10px rgba(252,163,17,0)}}
+.skel img{opacity:0;transition:opacity .6s,transform .8s}
+.skel.ok img{opacity:1}
+.skel:not(.ok):not(.empty){background:linear-gradient(100deg,var(--soft) 30%,var(--line) 50%,var(--soft) 70%);background-size:200% 100%;animation:shim 1.3s infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.add:active,.btn:active{transform:scale(.93)}
+.bump{animation:bump .45s}
+@keyframes bump{40%{transform:scale(1.5) rotate(-8deg)}}
+
+.promo{padding:56px 0 8px;overflow:hidden;background:linear-gradient(180deg,var(--soft),var(--bg))}
+.promo .head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.promo h2{font-size:clamp(1.8rem,5vw,2.8rem)}
+.promo .hint{color:var(--muted);font-weight:600}
+.mq{display:flex;gap:18px;width:max-content;padding:10px 0 26px;animation:mq 45s linear infinite}
+.promo:hover .mq,.mq:focus-within{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-50% - 9px))}}
+.pc{position:relative;flex:none;width:250px;background:var(--bg);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.pc:hover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 24px 40px -18px rgba(20,33,61,.4)}
+.pc .photo{border-radius:0;aspect-ratio:1/1}
+.pc:hover .photo img{transform:scale(1.12)}
+.pc .photo img{transition:transform .8s}
+.tag{position:absolute;left:12px;top:12px;z-index:2;border-radius:999px;padding:5px 12px;font-weight:800;font-size:.82rem;color:#fff;background:#e63946;animation:wob 2.4s infinite}
+.tag.top{background:var(--accent);color:var(--on-accent)}
+@keyframes wob{50%{transform:scale(1.1) rotate(-3deg)}}
+.pc .in{padding:14px 16px 16px}
+.pc h3{font-size:1.15rem}
+.pc .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.pc .p b{font-size:1.1rem}.pc .p s{display:block;color:var(--muted);font-size:.85rem;line-height:1}
+.pc .add{padding:9px 16px}
+@media (prefers-reduced-motion:reduce){.mq{animation:none;overflow-x:auto;width:auto;padding-left:22px}.hero .ph,.tag,.facts .wrap span::before{animation:none!important}}
+
+
+/* Menu: gelap, ringkas, posisi foto bergantian */
+#menu{background:#0d1426;color:#fff;margin-top:56px;padding:64px 0 48px}
+#menu .sub{color:#b9c3dd}
+#menu>.wrap>h2{background:none;color:#fff;-webkit-background-clip:border-box}
+#menuList{display:flex;flex-direction:column}
+#menu .item{gap:28px;padding:20px 0;border:0;border-top:1px solid rgba(255,255,255,.16);border-radius:0;background:none;box-shadow:none;transform:none}
+#menu .item:nth-child(even){border-right:0}
+#menu .item>div:first-child{flex:0 0 220px!important}
+#menu .item .photo{flex:none;width:100%;aspect-ratio:4/3;border-radius:16px;border:3px solid #fca311}
+#menu .item h3{font-size:clamp(1.25rem,3vw,1.6rem);color:#fff}
+#menu .item p{margin:6px 0 12px;font-size:.95rem;line-height:1.5;color:#b9c3dd}
+#menu .item .pr{font-size:1.2rem;color:#fca311;filter:none}
+#menu .item .pr small{color:#b9c3dd}
+#menu .item .add{background:#fca311;color:#14213d;padding:9px 20px}
+#menu .item .step{border-color:#fca311}
+#menu .item .step button,#menu .item .step span{color:#fff}
+#menu .item .photo.empty{color:#b9c3dd;border-color:rgba(255,255,255,.35)}
+@media (max-width:760px){#menu .item>div:first-child{flex:none!important;width:100%}#menu .item .photo{aspect-ratio:16/9}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1 span i{transform:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="wrap nav">
+  <a class="logo" href="#beranda">Jajanan Kecil</a>
+  <a class="l" href="#beranda">Beranda</a><a class="l" href="#menu">Menu</a><a class="l" href="#cara">Cara pesan</a><a class="l" href="#kontak">Kontak</a>
+  <button class="cartbtn" id="openCart" aria-label="Buka keranjang">Keranjang<b id="cCount">0</b></button>
+</div></nav>
+<div class="sbar" id="sbar"></div>
+
+<header id="beranda" class="wrap hero">
+  <div class="t">
+    <h1><span><i>Jajanan pasar</i></span><span><i>dibuat segar</i></span><span><i>setiap pagi.</i></span></h1>
+    <p>Klepon, dadar gulung, lemper, dan jajanan khas Indonesia lain, dibuat dari bahan sederhana tanpa pengawet. Pesan lewat WhatsApp, kami siapkan dan antar.</p>
+    <div class="btns"><a class="btn main" href="#menu">Lihat menu</a><a class="btn" href="#cara">Cara pesan</a></div>
+  </div>
+  <div class="ph" id="heroPhoto"></div>
+</header>
+<div class="facts"><div class="wrap"><span>Dibuat setiap pagi</span><span>Tanpa pengawet</span><span>Bisa diantar</span><span>Pesan lewat WhatsApp</span></div></div>
+
+
+<section class="promo" id="promo"><div class="wrap head"><h2 class="reveal">Promo &amp; Terlaris</h2><span class="hint reveal">Geser atau arahkan kursor untuk berhenti ←→</span></div>
+  <div class="mq" id="mq"></div>
+</section>
+<section class="sec" id="menu"><div class="wrap">
+  <h2 class="reveal">Menu kami</h2>
+  <p class="sub reveal">Harga per paket seperti tertulis. Tekan Tambah, lalu kirim pesanan ke WhatsApp penjual.</p>
+  <div id="menuList"></div>
+</div></section>
+
+<section class="sec" id="cara"><div class="wrap">
+  <h2 class="reveal">Cara pesan</h2>
+  <p class="sub reveal">Tiga langkah, tidak perlu daftar akun.</p>
+  <ol class="steps">
+    <li class="reveal"><b>1</b><div><h3>Pilih jajanan</h3><p>Tekan Tambah pada menu yang Anda mau, atur jumlahnya di keranjang.</p></div></li>
+    <li class="reveal"><b>2</b><div><h3>Isi nama dan alamat</h3><p>Tulis nama Anda, serta alamat antar atau jam ambil jika perlu.</p></div></li>
+    <li class="reveal"><b>3</b><div><h3>Kirim lewat WhatsApp</h3><p>Pesanan Anda otomatis tertulis rapi di chat. Penjual akan mengonfirmasi.</p></div></li>
+  </ol>
+</div></section>
+
+<section class="contact" id="kontak"><div class="wrap">
+  <h2 class="reveal">Ada pertanyaan?</h2>
+  <p class="reveal">Untuk pesanan dalam jumlah besar seperti arisan atau hajatan, pesan satu hari sebelumnya. Buka setiap hari, 06.00 sampai 17.00 WIB.</p>
+  <a class="btn main reveal" id="waLink" href="#" target="_blank" rel="noopener">Chat WhatsApp</a>
+</div></section>
+<footer><div class="wrap">Jajanan Kecil. Harga dapat berubah sewaktu-waktu.</div></footer>
+
+<div class="overlay" id="ov" role="dialog" aria-modal="true" aria-labelledby="ct">
+  <div class="drawer">
+    <div class="dh"><h2 id="ct">Keranjang</h2><button class="close" id="closeCart" aria-label="Tutup keranjang">×</button></div>
+    <div id="cartList"></div>
+    <div class="total"><span>Total</span><span id="dTotal">Rp0</span></div>
+    <label for="nama">Nama Anda</label>
+    <input type="text" id="nama" autocomplete="name" placeholder="Contoh: Ibu Sari">
+    <label for="catatan">Alamat atau catatan (opsional)</label>
+    <textarea id="catatan" placeholder="Alamat antar, jam ambil, atau permintaan khusus"></textarea>
+    <div class="err" id="err" role="alert"></div>
+    <button class="wa" id="send">Pesan lewat WhatsApp</button>
+  </div>
+</div>
+
+<script id="state" type="application/json">{"photos":{}}</script>
+<script>
+// Ganti dengan nomor WhatsApp penjual (format internasional, tanpa + dan spasi)
+const WA_NUMBER="6282130067581";
+const MENU=[
+ {id:1,name:"Klepon",unit:"isi 6",price:8000,old:10000,tag:"promo",desc:"Bola ketan pandan berisi gula merah cair, digulung kelapa parut."},
+ {id:3,name:"Dadar Gulung",unit:"isi 5",price:10000,desc:"Dadar pandan lembut dengan unti kelapa gula aren."},
+ {id:4,name:"Kue Lapis",unit:"isi 6 potong",price:12000,old:15000,tag:"promo",desc:"Lapisan kenyal warna-warni dari tepung beras dan santan."},
+ {id:5,name:"Lemper Ayam",unit:"isi 3",price:12000,tag:"top",rank:1,desc:"Ketan gurih isi suwiran ayam berbumbu, dibungkus daun pisang."},
+ {id:6,name:"Risoles Ragout",unit:"isi 4",price:14000,tag:"top",rank:2,desc:"Kulit tipis renyah, isi ragout ayam, sayuran, dan keju."},
+ {id:7,name:"Lumpia Semarang",unit:"isi 3",price:12000,old:15000,tag:"promo",desc:"Rebung, udang, dan ayam dalam kulit lumpia goreng garing."},
+ {id:8,name:"Serabi Solo",unit:"isi 3",price:9000,desc:"Serabi hangat dengan kuah santan dan kinca gula jawa."},
+ {id:9,name:"Kue Cucur",unit:"isi 5",price:10000,desc:"Kue tradisional berbentuk bundar dengan pinggiran renyah dan bagian tengah yang lembut."},
+ {id:10,name:"Kue Pancong",unit:"isi 4",price:12000,desc:"Kue kelapa gurih dengan bagian luar kecokelatan dan bagian dalam yang lembut."},
+ {id:11,name:"Kue Putu Ayu",unit:"isi 6",price:10000,desc:"Kue pandan kukus lembut dengan taburan kelapa parut."}
+];
+const $=id=>document.getElementById(id);
+const rp=n=>"Rp"+n.toLocaleString("id-ID");
+let state={photos:{}};try{state=JSON.parse($("state").textContent)}catch(e){}
+let cart={},seller=false,assetsApi=null,artApi=null;
+
+const C="https://commons.wikimedia.org/wiki/Special:FilePath/";
+const IMG={hero:{f:"Jajan_Pasar_in_Jakarta_edit.JPG",q:"jajan pasar"},m1:{f:"Klepon_Side_View.jpg"},
+ m3:{q:"dadar gulung"},m4:{q:"kue lapis"},m5:{q:"lemper"},m6:{f:"Risoles_dengan_Isi.jpg"},m7:{f:"Lumpia_Lunpia_Semarang.jpg"},m8:{q:"serabi"},
+ m9:{local:"kue cucur.jpg",q:"kue cucur"},m10:{local:"kue pancong.jpg",q:"kue pancong"},m11:{local:"kue putu ayu.jpg",q:"kue putu ayu"}};
+const cacheU={};
+async function resolve(k){
+  const g=IMG[k]||{};if(cacheU[k])return cacheU[k];
+  if(g.f)return cacheU[k]=C+g.f+"?width=900";
+  const u="https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch="+encodeURIComponent(g.q+" filetype:bitmap")+"&prop=imageinfo&iiprop=url|mime&iiurlwidth=900";
+  const r=await (await fetch(u)).json();
+  const p=Object.values((r.query&&r.query.pages)||{}).sort((x,y)=>x.index-y.index).find(x=>x.imageinfo&&/jpeg|png/.test(x.imageinfo[0].mime));
+  if(!p)throw 0;return cacheU[k]=p.imageinfo[0].thumburl;
+}
+function photo(key,label){
+  const id=state.photos[key];
+  const up=seller?`<label class="up">Unggah foto<input type="file" accept="image/*" hidden data-k="${key}"></label>`:"";
+  if(id)return `<div class="photo ok skel"><img src="/_blob/${id}" alt="${label}" loading="lazy" onload="this.parentNode.classList.add('ok')">${up}</div>`;
+  return `<div class="photo skel" data-k="${key}"><img alt="${label}" loading="lazy">${up}</div>`;
+}
+function hydrate(){
+  document.querySelectorAll(".photo[data-k]:not([data-d])").forEach(async d=>{
+    d.dataset.d=1;const im=d.querySelector("img");
+    const fail=()=>{d.classList.add("empty");d.style.minHeight="160px";im.remove();d.insertAdjacentText("afterbegin","Foto belum termuat")};
+    im.onload=()=>d.classList.add("ok");im.onerror=async()=>{try{im.onerror=fail;im.src=await resolve(d.dataset.k)}catch(e){fail()}};im.src=IMG[d.dataset.k]&&IMG[d.dataset.k].local?encodeURI(IMG[d.dataset.k].local):"foto/"+d.dataset.k+".jpg";
+  });
+}
+function renderPhotos(){
+  $("heroPhoto").innerHTML=photo("hero","Jajanan Kecil");
+  MENU.forEach(m=>{const c=$("ph"+m.id);if(c)c.innerHTML=photo("m"+m.id,m.name)});
+  document.querySelectorAll(".cph").forEach(c=>{const m=MENU.find(x=>x.id==c.dataset.id);c.innerHTML=photo("m"+m.id,m.name)});
+  hydrate();
+}
+$("menuList").innerHTML=MENU.map(m=>`
+ <article class="item reveal">
+  <div id="ph${m.id}" style="flex:0 0 46%"></div>
+  <div class="body"><h3>${m.name}</h3><p>${m.desc}</p>
+   <div class="buy"><span class="pr">${rp(m.price)}<small>${m.unit}</small></span><span id="ctl${m.id}"></span></div></div>
+ </article>`).join("");
+document.querySelectorAll(".item>div:first-child").forEach(d=>{d.style.flex="0 0 46%"});
+
+
+const pcs=MENU.filter(m=>m.tag).sort((a,b)=>(a.tag=="promo"?0:1)-(b.tag=="promo"?0:1)||(a.rank||0)-(b.rank||0)).map(m=>`
+ <article class="pc"><span class="tag ${m.tag}">${m.tag=="promo"?"PROMO -"+Math.round((1-m.price/m.old)*100)+"%":"TOP #"+m.rank}</span>
+  <div class="cph" data-id="${m.id}"></div>
+  <div class="in"><h3>${m.name}</h3><div class="row"><span class="p">${m.old?"<s>"+rp(m.old)+"</s>":""}<b>${rp(m.price)}</b></span><button class="add" data-a="inc" data-id="${m.id}">Tambah</button></div></div></article>`).join("");
+$("mq").innerHTML=pcs+pcs;
+$("mq").querySelectorAll(".pc:nth-child(n+"+(pcs.split("<article").length)+")").forEach(e=>e.setAttribute("aria-hidden","true"));
+function ctl(id){
+  const q=cart[id]||0;
+  $("ctl"+id).innerHTML=q?`<span class="step"><button data-a="dec" data-id="${id}" aria-label="Kurangi">−</button><span>${q}</span><button data-a="inc" data-id="${id}" aria-label="Tambah">+</button></span>`:`<button class="add" data-a="inc" data-id="${id}">Tambah</button>`;
+}
+function totals(){let n=0,t=0;for(const id in cart){n+=cart[id];t+=cart[id]*MENU.find(m=>m.id==id).price}return{n,t}}
+function renderCart(){
+  const{n,t}=totals();
+  $("cCount").textContent=n;$("dTotal").textContent=rp(t);
+  const ids=Object.keys(cart);
+  $("cartList").innerHTML=ids.length?ids.map(id=>{const m=MENU.find(x=>x.id==id),q=cart[id];return `<div class="ci"><div class="cr"><span>${m.name}</span><span>${rp(m.price*q)}</span></div><div class="cf"><span class="step"><button data-a="dec" data-id="${id}" aria-label="Kurangi">−</button><span>${q}</span><button data-a="inc" data-id="${id}" aria-label="Tambah">+</button></span><button class="rm" data-a="del" data-id="${id}">Hapus</button></div></div>`}).join(""):'<p class="empty">Keranjang masih kosong. Pilih jajanan dari menu lalu tekan Tambah.</p>';
+  $("send").disabled=!n;
+}
+function change(id,a){
+  const q=cart[id]||0;
+  if(a==="inc")cart[id]=q+1;else if(a==="dec"){q>1?cart[id]=q-1:delete cart[id]}else delete cart[id];
+  ctl(id);renderCart();
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(b)change(+b.dataset.id,b.dataset.a)});
+$("openCart").onclick=()=>$("ov").classList.add("open");
+$("closeCart").onclick=()=>$("ov").classList.remove("open");
+$("ov").addEventListener("click",e=>{if(e.target.id==="ov")$("ov").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("ov").classList.remove("open")});
+$("waLink").href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo Jajanan Kecil, saya mau tanya.")}`;
+
+$("send").onclick=()=>{
+  const nama=$("nama").value.trim();
+  if(!nama){$("err").textContent="Isi nama Anda dulu supaya penjual tahu siapa yang memesan.";$("nama").focus();return}
+  $("err").textContent="";
+  const{t}=totals();
+  const lines=Object.keys(cart).map(id=>{const m=MENU.find(x=>x.id==id),q=cart[id];return `- ${m.name} (${m.unit}) x${q} = ${rp(m.price*q)}`});
+  const cat=$("catatan").value.trim();
+  const msg=`Halo Jajanan Kecil, saya ingin memesan:\n\n${lines.join("\n")}\n\nTotal: ${rp(t)}\nNama: ${nama}`+(cat?`\nCatatan: ${cat}`:"")+"\n\nTerima kasih.";
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+};
+
+/* Animasi muncul saat di-scroll */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* Mode penjual: buka halaman ini dengan #penjual di ujung alamat, lalu unggah foto asli */
+function shrink(f){return new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(ok,"image/jpeg",.86)};im.onerror=no;im.src=URL.createObjectURL(f)})}
+async function save(){
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector("#state").textContent=JSON.stringify(state);
+  ["menuList","cartList","heroPhoto","sbar"].forEach(i=>c.querySelector("#"+i).innerHTML="");
+  c.querySelector("#cCount").textContent="0";c.querySelector("#ov").className="overlay";
+  await artApi.publish("<!DOCTYPE html>\n"+c.outerHTML);
+}
+document.addEventListener("change",async e=>{
+  const inp=e.target.closest("input[data-k]");if(!inp||!inp.files[0])return;
+  $("sbar").textContent="Mengunggah dan menyimpan foto…";
+  try{
+    const blob=await shrink(inp.files[0]);
+    const r=await assetsApi.upload(blob);
+    state.photos[inp.dataset.k]=r.id;
+    renderPhotos();
+    await save();
+  }catch(err){$("sbar").textContent="Foto gagal disimpan. Coba lagi dengan foto yang lebih kecil."}
+});
+async function initSeller(){
+  if(location.hash!=="#penjual"||!window.claude||!claude.use)return;
+  try{
+    const [u,a,p]=await Promise.all([claude.use("user"),claude.use("assets"),claude.use("artifact")]);
+    if(u&&u.canEdit()&&a&&p){seller=true;assetsApi=a;artApi=p;$("sbar").textContent="Mode penjual: tekan Unggah foto pada hero dan tiap menu.";renderPhotos()}
+  }catch(e){}
+}
+
+
+/* Animasi tambahan: progress scroll, bayangan nav, efek keranjang */
+addEventListener("scroll",()=>{const h=document.documentElement,p=scrollY/(h.scrollHeight-innerHeight||1);$("bar").style.width=(p*100)+"%";document.querySelector("nav").classList.toggle("sc",scrollY>8)},{passive:true});
+document.addEventListener("click",e=>{const b=e.target.closest('[data-a="inc"]');if(b){const c=$("cCount");c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump")}});
+MENU.forEach(m=>ctl(m.id));renderCart();renderPhotos();initSeller();
+</script>
+</body>
+</html>
